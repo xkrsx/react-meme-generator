@@ -3,9 +3,10 @@ import LeftSide from './components/LeftSide';
 import RightSide from './components/RightSide';
 
 export default function App() {
+  // TODO style component with flex
   return (
     <div>
-      <Header text="React Meme Generator" />
+      <Header />
       <LeftSide />
       <RightSide />
     </div>
