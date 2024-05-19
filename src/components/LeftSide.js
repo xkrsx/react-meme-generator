@@ -1,9 +1,9 @@
 import MemeTemplateTextInput from './MemeTemplateTextInput.js';
 
-export default function LeftSide({ TemplateId, onIdSubmit }) {
+export default function LeftSide({ templateId, onIdSubmit }) {
   return (
     <>
-      <MemeTemplateTextInput TemplateId={TemplateId} userInputId={onIdSubmit} />
+      <MemeTemplateTextInput templateId={templateId} userInputId={onIdSubmit} />
       {/* <TextBox /> */}
     </>
   );

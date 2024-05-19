@@ -12,9 +12,20 @@ export default function Main() {
   }
 
   return (
-    <>
-      <LeftSide TemplateId={newTemplateId} onIdSubmit={changeTemplateId} />
-      <RightSide />
-    </>
+    <div
+      style={{
+        margin: '10px auto',
+        display: 'flex',
+        justifyContent: 'space-evenly',
+        // flexDirection: 'row',
+      }}
+    >
+      <LeftSide
+        templateId={newTemplateId}
+        onIdSubmit={changeTemplateId}
+        style={{ width: '50vw' }}
+      />
+      <RightSide templateId={newTemplateId} style={{ width: '50vw' }} />
+    </div>
   );
 }

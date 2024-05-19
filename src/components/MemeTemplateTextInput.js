@@ -1,13 +1,23 @@
-export default function MemeTemplateTextInput({ TemplateId, userInputId }) {
+import { useState } from 'react';
+
+export default function MemeTemplateTextInput({ templateId, userInputId }) {
+  const [idPreview, setIdPreview] = useState(templateId);
+
   function handleKeyDown(event) {
     if (event.keyCode === 13) {
-      alert('Enter key was pressed ' + TemplateId);
+      userInputId(event.currentTarget.value);
+      // alert('Enter key was pressed ' + event.currentTarget.value);
     }
   }
 
   return (
     <form onSubmit={(event) => event.preventDefault()}>
-      <label onMouseDownCapture={() => userInputId('')}>
+      <label
+        onMouseDownCapture={() => {
+          setIdPreview('');
+          userInputId('');
+        }}
+      >
         Meme template
         <p>
           Type name in and hit 'enter' to choose it as a background image.
@@ -19,9 +29,10 @@ export default function MemeTemplateTextInput({ TemplateId, userInputId }) {
         <label>
           Meme ID:{' '}
           <input
-            value={TemplateId}
+            value={idPreview}
             onKeyDown={handleKeyDown}
-            onChange={(event) => userInputId(event.currentTarget.value)}
+            onChange={(event) => setIdPreview(event.currentTarget.value)}
+            // userInputId(event.currentTarget.value)}
           />
         </label>
       </label>
