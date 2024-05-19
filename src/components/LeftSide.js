@@ -1,11 +1,10 @@
-import TextBox from './common/TextBox';
-import TemplateBox from './TemplateBox';
+import MemeTemplateTextInput from './MemeTemplateTextInput.js';
 
-export default function LeftSide() {
+export default function LeftSide({ TemplateId, onIdSubmit }) {
   return (
     <>
-      <TemplateBox />
-      <TextBox />
+      <MemeTemplateTextInput TemplateId={TemplateId} userInputId={onIdSubmit} />
+      {/* <TextBox /> */}
     </>
   );
 }

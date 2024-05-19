@@ -1,14 +1,12 @@
-import Header from './components/common/Header';
-import LeftSide from './components/LeftSide';
-import RightSide from './components/RightSide';
+import Header from './components/common/Header.js';
+import Main from './components/common/Main.js';
 
 export default function App() {
   // TODO style component with flex
   return (
     <div>
       <Header />
-      <LeftSide />
-      <RightSide />
+      <Main />
     </div>
   );
 }
