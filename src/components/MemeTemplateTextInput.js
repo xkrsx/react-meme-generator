@@ -1,40 +1,43 @@
 import { useState } from 'react';
 
-export default function MemeTemplateTextInput({ templateId, userInputId }) {
+export default function MemeTemplateTextInput({ templateId, onIdSubmit }) {
   const [idPreview, setIdPreview] = useState(templateId);
 
   function handleKeyDown(event) {
     if (event.keyCode === 13) {
-      userInputId(event.currentTarget.value);
-      // alert('Enter key was pressed ' + event.currentTarget.value);
+      onIdSubmit(event.currentTarget.value);
     }
   }
 
   return (
-    <form onSubmit={(event) => event.preventDefault()}>
-      <label
-        onMouseDownCapture={() => {
-          setIdPreview('');
-          userInputId('');
-        }}
-      >
+    <form
+      onSubmit={(event) => event.preventDefault()}
+      onMouseDownCapture={() => {
+        setIdPreview('');
+        onIdSubmit('');
+      }}
+      style={{
+        border: '1px black dotted',
+        borderRadius: '10px',
+        height: '100%',
+        padding: '32px',
+      }}
+    >
+      <label>
         Meme template
         <p>
           Type name in and hit 'enter' to choose it as a background image.
           <br />
           If no meme template is found, you will receive an error.
           <br />
-          WARNING! Clicking inside this box clears text input.
+          <strong>Click inside this box to clear meme ID.</strong>
         </p>
-        <label>
-          Meme ID:{' '}
-          <input
-            value={idPreview}
-            onKeyDown={handleKeyDown}
-            onChange={(event) => setIdPreview(event.currentTarget.value)}
-            // userInputId(event.currentTarget.value)}
-          />
-        </label>
+        Meme ID:{' '}
+        <input
+          value={idPreview}
+          onKeyDown={handleKeyDown}
+          onChange={(event) => setIdPreview(event.currentTarget.value)}
+        />
       </label>
     </form>
   );
