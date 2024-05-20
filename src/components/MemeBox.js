@@ -1,11 +1,11 @@
 import { saveAs } from 'file-saver';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useSWR from 'swr';
 
 export default function MemeBox({ templateId }) {
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
   const [captionsUrl, setCaptionsUrl] = useState('');
-  const [topText, setTopText] = useState('');
+  const [topText, setTopText] = useState('aaa~q');
   const [bottomText, setBottomText] = useState('');
 
   const { data, error, isValidating } = useSWR(
@@ -27,8 +27,23 @@ export default function MemeBox({ templateId }) {
     setCaptionsUrl('');
   }
 
+  // TODO fix special characters
+
+  // .replace(' ', '_')
+  // .replace('?', '~q')
+  // .replace('#', '~h')
+  // .replace('/', '~s')
+
   function handleSubmit(event) {
+    // if (topText.findAll('?')) {
+    //   setTopText(topText + '~q');
+    // }
+
+    console.log(topText);
     event.preventDefault();
+    // if (topText.search('?')) {
+    //   topText.replace('?', '~q');
+    // }
     setCaptionsUrl(
       `https://api.memegen.link/images/${templateId}/${topText}/${bottomText}.png`,
     );
