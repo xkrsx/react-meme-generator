@@ -4,10 +4,23 @@ import RightSide from '../RightSide';
 
 export default function Main() {
   // TODO add random meme template id on start
+  // TODO refactor top and bottomText into one usestate object?
   const [newTemplateId, setNewTemplateId] = useState('aag');
+  const [topText, setTopText] = useState('');
+  const [bottomText, setBottomText] = useState('');
+  const [captionsUrl, setCaptionsUrl] = useState('');
 
   function changeTemplateId(userInput) {
     setNewTemplateId(userInput);
+  }
+  function changeTopText(userInput) {
+    setTopText(userInput);
+  }
+  function changeBottomText(userInput) {
+    setBottomText(userInput);
+  }
+  function changeCaptionsUrl(userInput) {
+    setCaptionsUrl(userInput);
   }
 
   return (
@@ -23,9 +36,19 @@ export default function Main() {
       <LeftSide
         templateId={newTemplateId}
         onIdSubmit={changeTemplateId}
-        style={{ width: '49%' }}
+        onTopSubmit={changeTopText}
+        onBottomSubmit={changeBottomText}
+        onCaptionsUrlSubmit={changeCaptionsUrl}
       />
-      <RightSide templateId={newTemplateId} style={{ width: '49%' }} />
+      <RightSide
+        templateId={newTemplateId}
+        topText={topText}
+        bottomText={bottomText}
+        onTopSubmit={changeTopText}
+        onBottomSubmit={changeBottomText}
+        captionsUrl={captionsUrl}
+        onCaptionsUrlSubmit={changeCaptionsUrl}
+      />
     </div>
   );
 }

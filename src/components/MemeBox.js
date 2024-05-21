@@ -1,12 +1,16 @@
 import { saveAs } from 'file-saver';
-import { useState } from 'react';
 import useSWR from 'swr';
 
-export default function MemeBox({ templateId }) {
+export default function MemeBox({
+  templateId,
+  topText,
+  bottomText,
+  onTopSubmit,
+  onBottomSubmit,
+  captionsUrl,
+  onCaptionsUrlSubmit,
+}) {
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
-  const [captionsUrl, setCaptionsUrl] = useState('');
-  const [topText, setTopText] = useState('');
-  const [bottomText, setBottomText] = useState('');
 
   const { data, error, isValidating } = useSWR(
     // `https://api.memegen.link/templates/${templateId}`,
@@ -24,13 +28,12 @@ export default function MemeBox({ templateId }) {
 
   function handleReset(event) {
     event.preventDefault();
-    setTopText('');
-    setBottomText('');
-    setCaptionsUrl('');
+    onTopSubmit('');
+    onBottomSubmit('');
+    onCaptionsUrlSubmit('');
   }
 
   // TODO fix special characters
-
   // .replace(' ', '_')
   // .replace('?', '~q')
   // .replace('#', '~h')
@@ -41,17 +44,17 @@ export default function MemeBox({ templateId }) {
     //   setTopText(topText + '~q');
     // }
 
-    // console.log(topText);
     event.preventDefault();
-    // if (topText.search('?')) {
-    //   topText.replace('?', '~q');
-    // }
-    setCaptionsUrl(
+    onCaptionsUrlSubmit(
       // `https://api.memegen.link/images/${templateId}/${topText}/${bottomText}.png`,
       // gives an 'Invalid type "any" of template literal expression.'
       'https://api.memegen.link/images/' +
         templateId +
-        `/${topText}/${bottomText}.png`,
+        '/' +
+        topText +
+        '/' +
+        bottomText +
+        '.png',
     );
   }
 
@@ -59,17 +62,24 @@ export default function MemeBox({ templateId }) {
     saveAs(captionsUrl, 'meme.png');
   }
 
+  // function noMemeId() {
+  //   return <p>Please type meme ID.</p>;
+  // }
+
   return (
+    // {data.blank === undefined ? (
+    //   noMemeId()
+    // ) : (
     <div
       style={{
-        border: '1px black dotted',
-        borderRadius: '10px',
-        height: '100%',
-        padding: '32px',
+        width: '500px',
       }}
     >
       <div
         style={{
+          border: '1px black dotted',
+          borderRadius: '10px',
+          padding: '32px',
           flexFlow: 'flex column',
           justifyContent: 'space-between',
         }}
@@ -91,7 +101,7 @@ export default function MemeBox({ templateId }) {
             Top text{' '}
             <input
               value={topText}
-              onChange={(event) => setTopText(event.currentTarget.value)}
+              onChange={(event) => onTopSubmit(event.currentTarget.value)}
               style={{
                 border: '1px black solid',
                 marginLeft: '0.5rem',
@@ -110,7 +120,7 @@ export default function MemeBox({ templateId }) {
             Bottom text
             <input
               value={bottomText}
-              onChange={(event) => setBottomText(event.currentTarget.value)}
+              onChange={(event) => onBottomSubmit(event.currentTarget.value)}
               style={{
                 border: '1px black solid',
                 marginLeft: '0.5rem',
@@ -123,12 +133,12 @@ export default function MemeBox({ templateId }) {
             <button
               onClick={handleReset}
               style={{
-                padding: '15px 45px',
+                padding: '0.5rem 2rem',
                 margin: '0.5rem',
                 backgroundColor: 'lightgrey',
                 borderRadius: '10px',
-                color: 'black',
-                fontSize: '1.5rem',
+                color: 'crimson',
+                fontSize: '1.2rem',
                 border: '1px white solid',
               }}
             >
@@ -139,12 +149,12 @@ export default function MemeBox({ templateId }) {
               onClick={handleSubmit}
               data-test-id="generate-meme"
               style={{
-                padding: '15px 45px',
+                padding: '0.5rem 1rem',
                 margin: '0.5rem',
-                backgroundColor: 'green',
+                backgroundColor: 'raspberry',
                 borderRadius: '10px',
-                color: 'white',
-                fontSize: '1.5rem',
+                color: 'carmine',
+                fontSize: '1.2rem',
                 border: '1px white solid',
               }}
             >
@@ -158,7 +168,7 @@ export default function MemeBox({ templateId }) {
             src={data.blank}
             alt="Meme template"
             data-test-id="meme-image"
-            style={{ height: '500px' }}
+            style={{ width: '100%' }}
           />
         ) : (
           <img
@@ -166,7 +176,7 @@ export default function MemeBox({ templateId }) {
             alt="Your meme"
             className="meme-to-download"
             data-test-id="meme-image"
-            style={{ height: '500px' }}
+            style={{ width: '100%' }}
           />
         )}
         <p>
@@ -176,8 +186,9 @@ export default function MemeBox({ templateId }) {
           <button
             onClick={handleDownload}
             style={{
-              padding: '15px 45px',
-              margin: '1rem',
+              padding: '0.5rem',
+              width: '100%',
+              margin: '0.7rem',
               backgroundColor: 'green',
               borderRadius: '10px',
               color: 'white',
@@ -190,5 +201,6 @@ export default function MemeBox({ templateId }) {
         </div>
       </div>
     </div>
+    // )}
   );
 }

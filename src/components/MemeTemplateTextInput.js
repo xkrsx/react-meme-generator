@@ -1,6 +1,12 @@
 import { useState } from 'react';
 
-export default function MemeTemplateTextInput({ templateId, onIdSubmit }) {
+export default function MemeTemplateTextInput({
+  templateId,
+  onIdSubmit,
+  onTopSubmit,
+  onBottomSubmit,
+  onCaptionsUrlSubmit,
+}) {
   const [idPreview, setIdPreview] = useState(templateId);
 
   function handleKeyDown(event) {
@@ -15,6 +21,9 @@ export default function MemeTemplateTextInput({ templateId, onIdSubmit }) {
       onMouseDownCapture={() => {
         setIdPreview('');
         onIdSubmit('');
+        onTopSubmit('');
+        onBottomSubmit('');
+        onCaptionsUrlSubmit('');
       }}
       style={{
         border: '1px black dotted',
