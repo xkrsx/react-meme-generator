@@ -5,11 +5,13 @@ import useSWR from 'swr';
 export default function MemeBox({ templateId }) {
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
   const [captionsUrl, setCaptionsUrl] = useState('');
-  const [topText, setTopText] = useState('aaa~q');
+  const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
 
   const { data, error, isValidating } = useSWR(
-    `https://api.memegen.link/templates/${templateId}`,
+    // `https://api.memegen.link/templates/${templateId}`,
+    // gives an 'Invalid type "any" of template literal expression.'
+    'https://api.memegen.link/templates/' + templateId,
     fetcher,
   );
 
@@ -39,13 +41,17 @@ export default function MemeBox({ templateId }) {
     //   setTopText(topText + '~q');
     // }
 
-    console.log(topText);
+    // console.log(topText);
     event.preventDefault();
     // if (topText.search('?')) {
     //   topText.replace('?', '~q');
     // }
     setCaptionsUrl(
-      `https://api.memegen.link/images/${templateId}/${topText}/${bottomText}.png`,
+      // `https://api.memegen.link/images/${templateId}/${topText}/${bottomText}.png`,
+      // gives an 'Invalid type "any" of template literal expression.'
+      'https://api.memegen.link/images/' +
+        templateId +
+        `/${topText}/${bottomText}.png`,
     );
   }
 
