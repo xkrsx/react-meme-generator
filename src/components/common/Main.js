@@ -4,7 +4,7 @@ import RightSide from '../RightSide';
 
 export default function Main() {
   // TODO add random meme template id on start
-  // TODO refactor top and bottomText into one usestate object?
+  // TODO refactor top and bottomText into one useState object?
   const [newTemplateId, setNewTemplateId] = useState('aag');
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
