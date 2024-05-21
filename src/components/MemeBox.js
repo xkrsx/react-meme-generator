@@ -59,10 +59,6 @@ export default function MemeBox({ templateId }) {
     saveAs(captionsUrl, 'meme.png');
   }
 
-  // function noMemeId() {
-  //   return <p>Please type meme ID.</p>;
-  // }
-
   return (
     <div
       style={{
@@ -72,9 +68,6 @@ export default function MemeBox({ templateId }) {
         padding: '32px',
       }}
     >
-      {/* {data.blank === undefined ? (
-        noMemeId()
-      ) : ( */}
       <div
         style={{
           flexFlow: 'flex column',
@@ -164,6 +157,7 @@ export default function MemeBox({ templateId }) {
           <img
             src={data.blank}
             alt="Meme template"
+            data-test-id="meme-image"
             style={{ height: '500px' }}
           />
         ) : (
@@ -195,7 +189,6 @@ export default function MemeBox({ templateId }) {
           </button>
         </div>
       </div>
-      {/* )} */}
     </div>
   );
 }
