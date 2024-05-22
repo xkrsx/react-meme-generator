@@ -1,12 +1,6 @@
 import { useState } from 'react';
 
-export default function MemeTemplateTextInput({
-  templateId,
-  onIdSubmit,
-  onTopSubmit,
-  onBottomSubmit,
-  onCaptionsUrlSubmit,
-}) {
+export default function MemeTemplateTextInput({ templateId, onIdSubmit }) {
   const [idPreview, setIdPreview] = useState(templateId);
 
   function handleKeyDown(event) {
@@ -18,13 +12,6 @@ export default function MemeTemplateTextInput({
   return (
     <form
       onSubmit={(event) => event.preventDefault()}
-      // onMouseDownCapture={() => {
-      //   setIdPreview('');
-      //   onIdSubmit('');
-      //   onTopSubmit('');
-      //   onBottomSubmit('');
-      //   onCaptionsUrlSubmit('');
-      // }}
       style={{
         border: '1px black dotted',
         borderRadius: '10px',
@@ -39,7 +26,6 @@ export default function MemeTemplateTextInput({
           <br />
           If no meme template is found, you will receive an error.
           <br />
-          {/* <strong>Click inside this box to clear meme ID.</strong> */}
         </p>
         Meme ID:{' '}
         <input

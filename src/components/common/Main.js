@@ -13,31 +13,16 @@ export default function Main() {
 
   function changeTemplateId(userInput) {
     setNewTemplateId(userInput);
-    if (topText === '') {
-      // return setTopText('_');
-      changeCaptionsUrl(
-        // `https://api.memegen.link/images/${templateId}/${topText}/${bottomText}.png`,
-        // gives an 'Invalid type "any" of template literal expression.'
-        apiUrl + 'images/' + newTemplateId + '/%20/' + bottomText + '.png',
-      );
-    } else if (bottomText === '') {
-      // return setBottomText('_');
-      changeCaptionsUrl(
-        apiUrl + 'images/' + newTemplateId + '/' + topText + '/%20.png',
-      );
-    }
-    // return changeCaptionsUrl(
-    //   // `https://api.memegen.link/images/${templateId}/${topText}/${bottomText}.png`,
-    //   // gives an 'Invalid type "any" of template literal expression.'
-    //   apiUrl +
-    //     'images/' +
-    //     userInput +
-    //     '/' +
-    //     topText +
-    //     '/' +
-    //     bottomText +
-    //     '.png',
-    // );
+    changeCaptionsUrl(
+      apiUrl +
+        'images/' +
+        newTemplateId +
+        '/' +
+        topText +
+        '/' +
+        bottomText +
+        '.png',
+    );
   }
 
   function changeTopText(userInput) {

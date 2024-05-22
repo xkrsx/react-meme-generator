@@ -52,13 +52,9 @@ export default function MemeBox({
   // .replace('/', '~s')
 
   function handleSubmit(event) {
-    // if (topText.findAll('?')) {
-    //   setTopText(topText + '~q');
-    // }
-
     if (topText === '') {
-      event.preventDefault();
-      onTopSubmit('%20');
+      // event.preventDefault();
+      onTopSubmit('_');
       onCaptionsUrlSubmit(
         apiUrl +
           'images/' +
@@ -71,16 +67,9 @@ export default function MemeBox({
       );
     } else if (bottomText === '') {
       event.preventDefault();
-      onBottomSubmit('%20');
+      onBottomSubmit('_');
       onCaptionsUrlSubmit(
-        apiUrl +
-          'images/' +
-          templateId +
-          '/' +
-          topText +
-          '/' +
-          bottomText +
-          '.png',
+        apiUrl + 'images/' + templateId + '/' + topText + '/.png',
       );
     }
     event.preventDefault();
