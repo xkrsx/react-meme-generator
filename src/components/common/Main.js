@@ -13,27 +13,34 @@ export default function Main() {
 
   function changeTemplateId(userInput) {
     setNewTemplateId(userInput);
-    changeCaptionsUrl(
-      // `https://api.memegen.link/images/${templateId}/${topText}/${bottomText}.png`,
-      // gives an 'Invalid type "any" of template literal expression.'
-      apiUrl +
-        'images/' +
-        userInput +
-        '/' +
-        topText +
-        '/' +
-        bottomText +
-        '.png',
-    );
+    if (topText === '' && bottomText === '') {
+      setCaptionsUrl('');
+    } else {
+      changeCaptionsUrl(
+        // `https://api.memegen.link/images/${templateId}/${topText}/${bottomText}.png`,
+        // gives an 'Invalid type "any" of template literal expression.'
+        apiUrl +
+          'images/' +
+          userInput +
+          '/' +
+          topText +
+          '/' +
+          bottomText +
+          '.png',
+      );
+    }
   }
 
   function changeTopText(userInput) {
     setTopText(userInput);
-    changeCaptionsUrl();
+    // changeTemplateId();
+    // changeCaptionsUrl();
   }
   function changeBottomText(userInput) {
     setBottomText(userInput);
-    changeCaptionsUrl();
+    // changeTemplateId();
+
+    // changeCaptionsUrl();
   }
   function changeCaptionsUrl(userInput) {
     setCaptionsUrl(userInput);

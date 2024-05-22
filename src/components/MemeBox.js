@@ -55,23 +55,31 @@ export default function MemeBox({
     // if (topText.findAll('?')) {
     //   setTopText(topText + '~q');
     // }
-
-    event.preventDefault();
-    onCaptionsUrlSubmit(
-      // `https://api.memegen.link/images/${templateId}/${topText}/${bottomText}.png`,
-      // gives an 'Invalid type "any" of template literal expression.'
-      apiUrl +
-        'images/' +
-        templateId +
-        '/' +
-        topText +
-        '/' +
-        bottomText +
-        '.png',
-    );
+    if (topText === '') {
+      event.preventDefault();
+      alert('both fields have to contain text');
+    } else if (bottomText === '') {
+      alert('both fields have to contain text');
+      event.preventDefault();
+    } else {
+      event.preventDefault();
+      onCaptionsUrlSubmit(
+        // `https://api.memegen.link/images/${templateId}/${topText}/${bottomText}.png`,
+        // gives an 'Invalid type "any" of template literal expression.'
+        apiUrl +
+          'images/' +
+          templateId +
+          '/' +
+          topText +
+          '/' +
+          bottomText +
+          '.png',
+      );
+    }
   }
 
   function handleDownload() {
+    alert('close this window to start download');
     saveAs(captionsUrl, 'meme.png');
   }
 
