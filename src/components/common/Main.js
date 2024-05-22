@@ -34,7 +34,7 @@ export default function Main() {
   function changeCaptionsUrl(userInput) {
     setCaptionsUrl(userInput);
   }
-  console.log(topText, bottomText);
+
   console.log(captionsUrl);
 
   return (

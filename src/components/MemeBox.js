@@ -53,9 +53,20 @@ export default function MemeBox({
 
   function handleSubmit(event) {
     if (topText === '') {
-      // event.preventDefault();
-      onTopSubmit('_');
+      event.preventDefault();
       onCaptionsUrlSubmit(
+        apiUrl + 'images/' + templateId + '/_/' + bottomText + '.png',
+      );
+    } else if (bottomText === '') {
+      event.preventDefault();
+      onCaptionsUrlSubmit(
+        apiUrl + 'images/' + templateId + '/' + topText + '/_.png',
+      );
+    } else {
+      event.preventDefault();
+      onCaptionsUrlSubmit(
+        // `https://api.memegen.link/images/${templateId}/${topText}/${bottomText}.png`,
+        // gives an 'Invalid type "any" of template literal expression.'
         apiUrl +
           'images/' +
           templateId +
@@ -65,26 +76,7 @@ export default function MemeBox({
           bottomText +
           '.png',
       );
-    } else if (bottomText === '') {
-      event.preventDefault();
-      onBottomSubmit('_');
-      onCaptionsUrlSubmit(
-        apiUrl + 'images/' + templateId + '/' + topText + '/.png',
-      );
     }
-    event.preventDefault();
-    onCaptionsUrlSubmit(
-      // `https://api.memegen.link/images/${templateId}/${topText}/${bottomText}.png`,
-      // gives an 'Invalid type "any" of template literal expression.'
-      apiUrl +
-        'images/' +
-        templateId +
-        '/' +
-        topText +
-        '/' +
-        bottomText +
-        '.png',
-    );
   }
 
   function handleDownload() {
@@ -118,6 +110,7 @@ export default function MemeBox({
         <h3 style={{ textAlign: 'center' }}>Add your own captions!</h3>
 
         <form
+          onClick={handleSubmit}
           className="create-custom-captions"
           style={{ flexFlow: 'flex column', justifyContent: 'flex-end' }}
         >
@@ -181,7 +174,6 @@ export default function MemeBox({
             </button>
 
             <button
-              onClick={handleSubmit}
               data-test-id="generate-meme"
               style={{
                 padding: '0.5rem 1rem',
