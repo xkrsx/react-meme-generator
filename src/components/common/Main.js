@@ -13,7 +13,9 @@ export default function Main() {
 
   function changeTemplateId(userInput) {
     setNewTemplateId(userInput);
-    if (topText === '' && bottomText === '') {
+    if (topText === '') {
+      setCaptionsUrl('');
+    } else if (bottomText === '') {
       setCaptionsUrl('');
     } else {
       changeCaptionsUrl(
@@ -33,14 +35,9 @@ export default function Main() {
 
   function changeTopText(userInput) {
     setTopText(userInput);
-    // changeTemplateId();
-    // changeCaptionsUrl();
   }
   function changeBottomText(userInput) {
     setBottomText(userInput);
-    // changeTemplateId();
-
-    // changeCaptionsUrl();
   }
   function changeCaptionsUrl(userInput) {
     setCaptionsUrl(userInput);

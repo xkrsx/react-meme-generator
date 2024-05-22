@@ -12,7 +12,6 @@ export default function MemeTemplateTextInput({
   function handleKeyDown(event) {
     if (event.keyCode === 13) {
       onIdSubmit(event.currentTarget.value);
-      // onCaptionsUrlSubmit();
     }
   }
 
