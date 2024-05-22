@@ -16,7 +16,7 @@ export default function Main() {
     changeCaptionsUrl(
       apiUrl +
         'images/' +
-        newTemplateId +
+        userInput +
         '/' +
         topText +
         '/' +
