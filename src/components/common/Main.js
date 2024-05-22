@@ -9,10 +9,24 @@ export default function Main() {
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
   const [captionsUrl, setCaptionsUrl] = useState('');
+  const apiUrl = 'https://api.memegen.link/';
 
   function changeTemplateId(userInput) {
     setNewTemplateId(userInput);
+    changeCaptionsUrl(
+      // `https://api.memegen.link/images/${templateId}/${topText}/${bottomText}.png`,
+      // gives an 'Invalid type "any" of template literal expression.'
+      apiUrl +
+        'images/' +
+        userInput +
+        '/' +
+        topText +
+        '/' +
+        bottomText +
+        '.png',
+    );
   }
+
   function changeTopText(userInput) {
     setTopText(userInput);
     changeCaptionsUrl();
@@ -24,6 +38,8 @@ export default function Main() {
   function changeCaptionsUrl(userInput) {
     setCaptionsUrl(userInput);
   }
+
+  console.log(captionsUrl);
 
   return (
     <div

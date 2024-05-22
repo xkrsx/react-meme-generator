@@ -11,11 +11,12 @@ export default function MemeBox({
   onCaptionsUrlSubmit,
 }) {
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
+  const apiUrl = 'https://api.memegen.link/';
 
   const { data, error, isValidating } = useSWR(
     // `https://api.memegen.link/templates/${templateId}`,
     // gives an 'Invalid type "any" of template literal expression.'
-    'https://api.memegen.link/templates/' + templateId,
+    apiUrl + 'templates/' + templateId,
     fetcher,
   );
 
@@ -59,7 +60,8 @@ export default function MemeBox({
     onCaptionsUrlSubmit(
       // `https://api.memegen.link/images/${templateId}/${topText}/${bottomText}.png`,
       // gives an 'Invalid type "any" of template literal expression.'
-      'https://api.memegen.link/images/' +
+      apiUrl +
+        'images/' +
         templateId +
         '/' +
         topText +
