@@ -58,10 +58,10 @@ export default function MemeBox({
 
     if (topText === '') {
       event.preventDefault();
-      return onTopSubmit('_');
+      onTopSubmit('_');
     } else if (bottomText === '') {
       event.preventDefault();
-      return onBottomSubmit('_');
+      onBottomSubmit('_');
     }
     event.preventDefault();
     onCaptionsUrlSubmit(
