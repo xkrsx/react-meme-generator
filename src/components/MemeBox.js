@@ -57,9 +57,9 @@ export default function MemeBox({
     // }
     if (topText === '') {
       event.preventDefault();
-      alert('both fields have to contain text');
+      // alert('both fields have to contain text');
     } else if (bottomText === '') {
-      alert('both fields have to contain text');
+      // alert('both fields have to contain text');
       event.preventDefault();
     } else {
       event.preventDefault();
@@ -81,12 +81,12 @@ export default function MemeBox({
   function handleDownload(event) {
     if (captionsUrl === '') {
       event.preventDefault();
-      alert('both fields have to contain text');
+      // alert('both fields have to contain text');
       // } else if (captionsUrl === '') {
       //   alert('both fields have to contain text');
       //   event.preventDefault();
     } else {
-      alert('close this window to start download');
+      // alert('close this window to start download');
       saveAs(captionsUrl, 'meme.png');
     }
   }
