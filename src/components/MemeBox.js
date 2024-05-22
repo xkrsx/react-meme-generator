@@ -58,10 +58,30 @@ export default function MemeBox({
 
     if (topText === '') {
       event.preventDefault();
-      onTopSubmit('_');
+      onTopSubmit('%20');
+      onCaptionsUrlSubmit(
+        apiUrl +
+          'images/' +
+          templateId +
+          '/' +
+          topText +
+          '/' +
+          bottomText +
+          '.png',
+      );
     } else if (bottomText === '') {
       event.preventDefault();
-      onBottomSubmit('_');
+      onBottomSubmit('%20');
+      onCaptionsUrlSubmit(
+        apiUrl +
+          'images/' +
+          templateId +
+          '/' +
+          topText +
+          '/' +
+          bottomText +
+          '.png',
+      );
     }
     event.preventDefault();
     onCaptionsUrlSubmit(
@@ -86,7 +106,7 @@ export default function MemeBox({
   //   return <p>Please type meme ID.</p>;
   // }
 
-  console.log(captionsUrl);
+  // console.log(captionsUrl);
 
   return (
     // {data.blank === undefined ? (
