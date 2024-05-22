@@ -55,13 +55,15 @@ export default function MemeBox({
     if (topText === '') {
       event.preventDefault();
       onCaptionsUrlSubmit(
-        apiUrl + 'images/' + templateId + '/_/' + bottomText + '.png',
+        apiUrl + 'images/' + templateId + '/%20/' + bottomText + '.png',
       );
+      // onTopSubmit('%20');
     } else if (bottomText === '') {
       event.preventDefault();
       onCaptionsUrlSubmit(
-        apiUrl + 'images/' + templateId + '/' + topText + '/_.png',
+        apiUrl + 'images/' + templateId + '/' + topText + '/%20.png',
       );
+      // onBottomSubmit('%20');
     } else {
       event.preventDefault();
       onCaptionsUrlSubmit(
@@ -110,7 +112,6 @@ export default function MemeBox({
         <h3 style={{ textAlign: 'center' }}>Add your own captions!</h3>
 
         <form
-          onClick={handleSubmit}
           className="create-custom-captions"
           style={{ flexFlow: 'flex column', justifyContent: 'flex-end' }}
         >
@@ -124,7 +125,6 @@ export default function MemeBox({
           >
             Top text{' '}
             <input
-              required
               value={topText}
               onKeyDown={handleKeyDownTopText}
               onChange={(event) => onTopSubmit(event.currentTarget.value)}
@@ -145,7 +145,6 @@ export default function MemeBox({
           >
             Bottom text
             <input
-              required
               value={bottomText}
               onKeyDown={handleKeyDownBottomText}
               onChange={(event) => onBottomSubmit(event.currentTarget.value)}
@@ -174,6 +173,7 @@ export default function MemeBox({
             </button>
 
             <button
+              onClick={handleSubmit}
               data-test-id="generate-meme"
               style={{
                 padding: '0.5rem 1rem',
