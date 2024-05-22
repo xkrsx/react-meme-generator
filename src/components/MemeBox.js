@@ -57,10 +57,10 @@ export default function MemeBox({
     // }
     if (topText === '') {
       event.preventDefault();
-      // alert('both fields have to contain text');
+      return onTopSubmit('_');
     } else if (bottomText === '') {
-      // alert('both fields have to contain text');
       event.preventDefault();
+      return onBottomSubmit('_');
     } else {
       event.preventDefault();
       onCaptionsUrlSubmit(
@@ -78,22 +78,15 @@ export default function MemeBox({
     }
   }
 
-  function handleDownload(event) {
-    if (captionsUrl === '') {
-      event.preventDefault();
-      // alert('both fields have to contain text');
-      // } else if (captionsUrl === '') {
-      //   alert('both fields have to contain text');
-      //   event.preventDefault();
-    } else {
-      // alert('close this window to start download');
-      saveAs(captionsUrl, 'meme.png');
-    }
+  function handleDownload() {
+    saveAs(captionsUrl, 'meme.png');
   }
 
   // function noMemeId() {
   //   return <p>Please type meme ID.</p>;
   // }
+
+  console.log(captionsUrl);
 
   return (
     // {data.blank === undefined ? (

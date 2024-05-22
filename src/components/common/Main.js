@@ -14,23 +14,22 @@ export default function Main() {
   function changeTemplateId(userInput) {
     setNewTemplateId(userInput);
     if (topText === '') {
-      setCaptionsUrl('');
+      return setTopText('_');
     } else if (bottomText === '') {
-      setCaptionsUrl('');
-    } else {
-      changeCaptionsUrl(
-        // `https://api.memegen.link/images/${templateId}/${topText}/${bottomText}.png`,
-        // gives an 'Invalid type "any" of template literal expression.'
-        apiUrl +
-          'images/' +
-          userInput +
-          '/' +
-          topText +
-          '/' +
-          bottomText +
-          '.png',
-      );
+      return setBottomText('_');
     }
+    changeCaptionsUrl(
+      // `https://api.memegen.link/images/${templateId}/${topText}/${bottomText}.png`,
+      // gives an 'Invalid type "any" of template literal expression.'
+      apiUrl +
+        'images/' +
+        userInput +
+        '/' +
+        topText +
+        '/' +
+        bottomText +
+        '.png',
+    );
   }
 
   function changeTopText(userInput) {
