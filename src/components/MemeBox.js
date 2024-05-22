@@ -26,6 +26,17 @@ export default function MemeBox({
     return <div>Loading '{templateId}' template...</div>;
   }
 
+  function handleKeyDownTopText(event) {
+    if (event.keyCode === 13) {
+      handleSubmit(event);
+    }
+  }
+  function handleKeyDownBottomText(event) {
+    if (event.keyCode === 13) {
+      handleSubmit(event);
+    }
+  }
+
   function handleReset(event) {
     event.preventDefault();
     onTopSubmit('');
@@ -100,7 +111,9 @@ export default function MemeBox({
           >
             Top text{' '}
             <input
+              required
               value={topText}
+              onKeyDown={handleKeyDownTopText}
               onChange={(event) => onTopSubmit(event.currentTarget.value)}
               style={{
                 border: '1px black solid',
@@ -119,7 +132,9 @@ export default function MemeBox({
           >
             Bottom text
             <input
+              required
               value={bottomText}
+              onKeyDown={handleKeyDownBottomText}
               onChange={(event) => onBottomSubmit(event.currentTarget.value)}
               style={{
                 border: '1px black solid',
@@ -142,7 +157,7 @@ export default function MemeBox({
                 border: '1px white solid',
               }}
             >
-              Reset preview
+              Reset captions
             </button>
 
             <button

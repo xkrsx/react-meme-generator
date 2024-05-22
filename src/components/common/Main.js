@@ -15,9 +15,11 @@ export default function Main() {
   }
   function changeTopText(userInput) {
     setTopText(userInput);
+    changeCaptionsUrl();
   }
   function changeBottomText(userInput) {
     setBottomText(userInput);
+    changeCaptionsUrl();
   }
   function changeCaptionsUrl(userInput) {
     setCaptionsUrl(userInput);
