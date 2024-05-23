@@ -5,6 +5,7 @@ import RightSide from '../RightSide';
 export default function Main() {
   // TODO add random meme template id on start
   // TODO refactor top and bottomText into one useState object?
+  // TODO replace spaces in string with '%20' (not only empty string)
   const [newTemplateId, setNewTemplateId] = useState('aag');
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
