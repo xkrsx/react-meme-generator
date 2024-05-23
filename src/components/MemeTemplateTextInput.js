@@ -32,6 +32,10 @@ export default function MemeTemplateTextInput({ templateId, onIdSubmit }) {
           value={idPreview}
           onKeyDown={handleKeyDown}
           onChange={(event) => setIdPreview(event.currentTarget.value)}
+          onMouseDownCapture={() => {
+            setIdPreview('');
+            onIdSubmit('');
+          }}
         />
       </label>
     </form>

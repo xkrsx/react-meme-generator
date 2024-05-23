@@ -52,6 +52,10 @@ export default function MemeBox({
   // .replace('/', '~s')
 
   function handleSubmit(event) {
+    // if (topText === '' && bottomText === '') {
+    //   event.preventDefault();
+    //   onCaptionsUrlSubmit(apiUrl + 'images/' + templateId + '/%20/test.png');
+    // }
     if (topText === '') {
       event.preventDefault();
       onCaptionsUrlSubmit(
