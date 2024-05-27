@@ -14,16 +14,26 @@ export default function Main() {
 
   function changeTemplateId(userInput) {
     setNewTemplateId(userInput);
-    changeCaptionsUrl(
-      apiUrl +
-        'images/' +
-        userInput +
-        '/' +
-        topText +
-        '/' +
-        bottomText +
-        '.png',
-    );
+    if (topText === '') {
+      changeCaptionsUrl(
+        apiUrl + 'images/' + userInput + '/%20/' + bottomText + '.png',
+      );
+    } else if (bottomText === '') {
+      changeCaptionsUrl(
+        apiUrl + 'images/' + userInput + '/' + topText + '.png',
+      );
+    } else {
+      changeCaptionsUrl(
+        apiUrl +
+          'images/' +
+          userInput +
+          '/' +
+          topText +
+          '/' +
+          bottomText +
+          '.png',
+      );
+    }
   }
 
   function changeTopText(userInput) {

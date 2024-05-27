@@ -14,8 +14,6 @@ export default function MemeBox({
   const apiUrl = 'https://api.memegen.link/';
 
   const { data, error, isValidating } = useSWR(
-    // `https://api.memegen.link/templates/${templateId}`,
-    // gives an 'Invalid type "any" of template literal expression.'
     apiUrl + 'templates/' + templateId,
     fetcher,
   );
@@ -52,27 +50,19 @@ export default function MemeBox({
   // .replace('/', '~s')
 
   function handleSubmit(event) {
-    // if (topText === '' && bottomText === '') {
-    //   event.preventDefault();
-    //   onCaptionsUrlSubmit(apiUrl + 'images/' + templateId + '/%20/test.png');
-    // }
     if (topText === '') {
       event.preventDefault();
       onCaptionsUrlSubmit(
         apiUrl + 'images/' + templateId + '/%20/' + bottomText + '.png',
       );
-      // onTopSubmit('%20');
     } else if (bottomText === '') {
       event.preventDefault();
       onCaptionsUrlSubmit(
-        apiUrl + 'images/' + templateId + '/' + topText + '/%20.png',
+        apiUrl + 'images/' + templateId + '/' + topText + '.png',
       );
-      // onBottomSubmit('%20');
     } else {
       event.preventDefault();
       onCaptionsUrlSubmit(
-        // `https://api.memegen.link/images/${templateId}/${topText}/${bottomText}.png`,
-        // gives an 'Invalid type "any" of template literal expression.'
         apiUrl +
           'images/' +
           templateId +
@@ -92,8 +82,6 @@ export default function MemeBox({
   // function noMemeId() {
   //   return <p>Please type meme ID.</p>;
   // }
-
-  // console.log(captionsUrl);
 
   return (
     // {data.blank === undefined ? (
